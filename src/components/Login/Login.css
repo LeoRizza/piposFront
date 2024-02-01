@@ -1,0 +1,10 @@
+.loginContainer {
+    width: 250px;
+    padding: 5px 20px;
+    border: solid 2px lightskyblue;
+    margin: 30px auto;
+}
+
+.registerBtn button{
+    margin-top: 20px;
+}

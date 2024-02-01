@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;900&display=swap');
+
+header {
+    background-color: rgb(236, 69, 37);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2vw;
+    color: rgb(240, 241, 222);
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    margin: 0 5vw 0 0;
+}
+
+li {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 20px;
+
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
+    position: relative;
+}
+
+li:focus,
+li:hover {
+    color: #fff;
+}
+
+li:focus:after,
+li:hover:after {
+    width: 100%;
+    left: 0%;
+}
+
+li:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+}
+
+.estiloCat {
+    text-decoration: none;
+    color: rgb(240, 241, 222);
+    font-weight: 300;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    font-size: 30px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(240, 241, 222);
+    letter-spacing: 7px;
+    font-family: 'Lato', sans-serif;
+}
+
+.logo h1 {
+    font-size: 6vh;
+    margin: 0;
+}
+
+.logoNav {
+    height: 6vh;
+    margin-right: 20px;
+}
+
+.abrirMenu,
+.cerrarMenu {
+    display: none;
+}
+
+.icono {
+    width: 40px;
+}
+
+.abrirMenu,
+.cerrarMenu {
+    display: block;
+    border: 0;
+    font-size: 1.25rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.abrirMenu {
+    color: #1c1c1c;
+}
+
+.cerrarMenu {
+    color: #ececec;
+}
+
+.nav {
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 1rem;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 2rem;
+    background-color: rgb(236, 69, 37);
+    z-index: 2;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
+}
+
+.session {
+    color: rgb(240, 241, 222);
+    font-weight: 300;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    text-decoration: none;
+    border: solid #ececec 1px;
+    border-radius: 20px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    left: 0;
+    margin: 10px 0 10px 0;
+}
+
+.logout {
+    color: rgb(240, 241, 222);
+    font-weight: 300;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    text-decoration: none;
+    border: solid #ececec 1px;
+    border-radius: 20px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    left: 0;
+    margin: 10px 0 50px 0;
+}
+
+.nav ul {
+    margin-bottom: 20px;
+}
+
+.nav.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.navl {
+    flex-direction: column;
+    align-items: end;
+}
+
+/* 
+@media (max-width: 991px) {
+
+    .abrirMenu,
+    .cerrarMenu {
+        display: block;
+        border: 0;
+        font-size: 1.25rem;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    .abrirMenu {
+        color: #1c1c1c;
+    }
+
+    .cerrarMenu {
+        color: #ececec;
+    }
+
+    .nav {
+        height: 100%;
+        opacity: 0;
+        visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        gap: 1rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        padding: 2rem;
+        background-color: rgb(236, 69, 37);
+        z-index: 2;
+        box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
+    }
+
+    .nav ul {
+        margin-bottom: 20px;
+    }
+
+    .nav.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .navl {
+        flex-direction: column;
+        align-items: end;
+    }
+
+} */
+
+@media (max-width: 600px) {
+
+    .logo h1 {
+        font-size: 9vw;
+    }
+
+}

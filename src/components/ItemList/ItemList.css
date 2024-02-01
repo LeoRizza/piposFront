@@ -1,0 +1,111 @@
+.contenedorProductos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+    background: rgb(240, 241, 222);
+}
+
+.contenedorProductos .cardLoca {
+    width: 18rem;
+    box-shadow: 0 6px 10px rgba(121, 28, 10, 1);
+    transition: all 0.3s ease;
+    border-width: 2px;
+    border-style: solid;
+    position: relative;
+    margin: 2vh 0 2vh 0;
+    height: 70vh;
+}
+
+.cardLoca:hover {
+    transform: translateY(-10px);
+}
+
+.dataCard {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border: #ec4525 solid 1px;
+    border-radius: 10px;
+    padding: 0 5px;
+    margin-bottom: 10px;
+}
+
+.dataCard p {
+    margin: 0 0 0 0;
+}
+
+.detalleImg {
+    width: 10vw;
+    height: 40vh;
+    object-fit: contain;
+}
+
+.botonDetalle {
+    border-radius: 16px;
+    background-color: #791c0a;
+    border: solid transparent;
+    border-width: 0 0 4px;
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 3px 0;
+    overflow: visible;
+    padding: 10px 15px;
+    text-align: center;
+    text-transform: uppercase;
+    transform: translateZ(0);
+    text-decoration-line: none;
+}
+
+.botonDetalle::after {
+    background-clip: padding-box;
+    background-color: #ec4525;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.botonDetalle:focus {
+    user-select: auto;
+}
+.botonDetalle:hover:not(:disabled) {
+    filter: brightness(1.1);
+}
+.botonDetalle:disabled {
+    cursor: auto;
+}
+
+.botonDetalle:active::after {
+    border-width: 0 0 0px;
+}
+.botonDetalle:active {
+    padding-bottom: 10px;
+}
+
+.card .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+}
+
+.card-body .card-title {
+    margin-bottom: 0;
+}
+
+.card-body p {
+    margin: 0;
+}

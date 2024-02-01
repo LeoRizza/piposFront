@@ -1,0 +1,121 @@
+.contadore {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    max-width: 300px;
+    margin: 15px auto;
+}
+
+.divAgregar {
+    padding-bottom: 20px;
+    background: rgb(240, 241, 222);
+}
+
+.contadore p {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.contadore button {
+    border-radius: 16px;
+    background-color: #791c0a;
+    border: solid transparent;
+    border-width: 0 0 4px;
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 0;
+    overflow: visible;
+    padding: 13px 19px;
+    text-align: center;
+    text-transform: uppercase;
+    transform: translateZ(0);
+}
+
+.contadore button::after {
+    background-clip: padding-box;
+    background-color: #ec4525;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.contadore button:focus {
+    user-select: auto;
+}
+.contadore button:hover:not(:disabled) {
+    filter: brightness(1.1);
+}
+.contadore button:disabled {
+    cursor: auto;
+}
+
+.contadore button:active::after {
+    border-width: 0 0 0px;
+}
+.contadore button:active {
+    padding-bottom: 10px;
+}
+
+.agregarButton {
+    border-radius: 16px;
+    background-color: #791c0a;
+    border: solid transparent;
+    border-width: 0 0 4px;
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: auto;
+    overflow: visible;
+    padding: 13px 19px;
+    text-align: center;
+    text-transform: uppercase;
+    transform: translateZ(0);
+}
+
+.agregarButton::after {
+    background-clip: padding-box;
+    background-color: #ec4525;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.agregarButton:focus {
+    user-select: auto;
+}
+.agregarButton:hover:not(:disabled) {
+    filter: brightness(1.1);
+}
+.agregarButton:disabled {
+    cursor: auto;
+}
+
+.agregarButton:active::after {
+    border-width: 0 0 0px;
+}
+.agregarButton:active {
+    padding-bottom: 10px;
+}

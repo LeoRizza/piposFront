@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;900&display=swap');
+
+.card .imgDetalle {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3vh;
+    border-radius: 15px;
+    border: solid 3px #ec4525;
+    box-shadow: 25px 10px 20px rgba(121, 28, 10, 1);
+    max-width: 20vw;
+}
+
+.itemDetailDiv {
+    display: flex;
+    margin: 0 30%;
+    justify-content: space-evenly;
+    background: rgb(240, 241, 222);
+}
+
+.cardDetalle2 {
+    font-size: 1.3em;
+}
+
+.terminarCompra {
+    border-radius: 16px;
+    background-color: #791c0a;
+    border: solid transparent;
+    border-width: 0 0 4px;
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 20px auto 10px auto;
+    overflow: visible;
+    padding: 13px 19px;
+    text-align: center;
+    text-transform: uppercase;
+    transform: translateZ(0);
+}
+
+.terminarCompra::after {
+    background-clip: padding-box;
+    background-color: #ec4525;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.terminarCompra:focus {
+    user-select: auto;
+}
+.terminarCompra:hover:not(:disabled) {
+    filter: brightness(1.1);
+}
+.terminarCompra:disabled {
+    cursor: auto;
+}
+
+.terminarCompra:active::after {
+    border-width: 0 0 0px;
+}
+.terminarCompra:active {
+    padding-bottom: 10px;
+}
+
+
+.continuarCompra {
+    border-radius: 16px;
+    background-color: #791c0a;
+    border: solid transparent;
+    border-width: 0 0 4px;
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: auto;
+    overflow: visible;
+    padding: 13px 19px;
+    text-align: center;
+    text-transform: uppercase;
+    transform: translateZ(0);
+}
+
+.continuarCompra::after {
+    background-clip: padding-box;
+    background-color: #ec4525;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.continuarCompra:focus {
+    user-select: auto;
+}
+.continuarCompra:hover:not(:disabled) {
+    filter: brightness(1.1);
+}
+.continuarCompra:disabled {
+    cursor: auto;
+}
+
+.continuarCompra:active::after {
+    border-width: 0 0 0px;
+}
+.continuarCompra:active {
+    padding-bottom: 10px;
+}

@@ -1,0 +1,86 @@
+.itemCart{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 50px;
+    margin: 20px;
+    background: white;
+    border-radius: 20px;
+}
+
+.precioTotal {
+    text-align: center;
+}
+
+.divCart {
+    background: rgb(240, 241, 222);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.imgCart {
+    width: 10rem;
+    border-radius: 15px;
+}
+
+.cartButton {
+    border-radius: 16px;
+    background-color: #791c0a;
+    border: solid transparent;
+    border-width: 0 0 4px;
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 0 auto;
+    overflow: visible;
+    padding: 13px 19px;
+    text-align: center;
+    text-transform: uppercase;
+    transform: translateZ(0);
+}
+
+.cartButton::after {
+    background-clip: padding-box;
+    background-color: #ec4525;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.cartButton:focus {
+    user-select: auto;
+}
+.cartButton:hover:not(:disabled) {
+    filter: brightness(1.1);
+}
+.cartButton:disabled {
+    cursor: auto;
+}
+
+.cartButton:active::after {
+    border-width: 0 0 0px;
+}
+.cartButton:active {
+    padding-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+
+    .cartButton {
+        margin: 10px 0;
+    }
+
+}
