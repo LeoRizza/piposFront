@@ -14,15 +14,22 @@ const ItemListContainer = () => {
         const fetchProducts = async () => {
             try {
                 let apiUrl = 'https://backendtiendapipos.onrender.com/api/products';
-
+        
                 const queryParams = {
                     category: category || '',
                     ...queryString.parse(location.search),
                 };
-
-                const response = await fetch(`${apiUrl}?${queryString.stringify(queryParams)}`);
+        
+                const response = await fetch(`${apiUrl}?${queryString.stringify(queryParams)}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    mode: 'cors',
+                });
+        
                 const data = await response.json();
-
+        
                 if (data && data.products) {
                     setProductos(data.products);
                 } else if (Array.isArray(data)) {
@@ -36,6 +43,7 @@ const ItemListContainer = () => {
                 setLoading(false);
             }
         };
+        
 
         fetchProducts();
     }, [category, location.search]);
