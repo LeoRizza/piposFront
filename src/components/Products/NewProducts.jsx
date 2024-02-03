@@ -1,7 +1,6 @@
 import { useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import { getCookiesByName } from "../Utils/FormsUtils.js";
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './NewProducts.css';
 
