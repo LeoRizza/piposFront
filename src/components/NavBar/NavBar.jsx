@@ -6,8 +6,6 @@ import './NavBar.css';
 const NavBar = () => {
     const [menuVisible, setMenuVisible] = useState(false);
     const [userRol, setRol] = useState(null);
-    const [nombre, setNombre] = useState(null);
-    const [apellido, setApellido] = useState(null);
 
     const cerrarMenu = () => {
         setMenuVisible(false);
@@ -31,11 +29,7 @@ const NavBar = () => {
                 });
                 const userData = await response.json();
                 const userRol = userData.user.rol;
-                const userName = userData.user.first_name;
-                const userApellido = userData.user.last_name;
                 setRol(userRol);
-                setNombre(userName);
-                setApellido(userApellido);
             } catch (error) {
                 console.error('Error', error);
             }
@@ -88,12 +82,12 @@ const NavBar = () => {
                         <NavLink className="estiloCat" to="/products/camperas">Camperas</NavLink>
                     </li>
                 </ul>
-                {userRol === 'admin' && (
+            </nav>
+            {userRol === 'admin' && (
                     <NavLink className={`admin ${!getCookiesByName('jwtCookie') ? 'visibilityNone' : ''}`} to="/admin">
                         Admin<img className='icono' src="../img/admins.svg" alt="admin logo" />
                     </NavLink>
                 )}
-            </nav>
             <div className='divCartBurger'>
                 <NavLink className={`cartIcon ${!getCookiesByName('jwtCookie') ? 'visibilityNone' : ''}`} to="/cart"><img className='icono' src="../img/carrito.svg" alt="cart" /></NavLink>
                 <button className='abrirMenu' onClick={abrirMenu}><img className='icono' src="../img/burger.png" alt="cuenta" /></button>

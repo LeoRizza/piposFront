@@ -19,6 +19,11 @@
     border: solid 1px #ec4525;
 }
 
+.borrarEliminar {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .user-table {
     width: 100%;
     border-collapse: collapse;

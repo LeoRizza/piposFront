@@ -6,6 +6,16 @@ import './Admin.css';
 const Admin = () => {
     const [products, setProducts] = useState([]);
     const [users, setUsers] = useState([]);
+    const [modifiedProduct, setModifiedProduct] = useState({
+        _id: null,
+        title: '',
+        description: '',
+        price: 0,
+        stock: 0,
+        code: '',
+        category: '',
+        thumbnails: '' // Agregado el atributo thumbnails
+    });
 
     const [selectedProduct, setSelectedProduct] = useState({
         _id: null,
@@ -20,7 +30,7 @@ const Admin = () => {
     const [totalPages, setTotalPages] = useState(1);
 
     const fetchUsers = async () => {
-        const token = getCookiesByName('jwtCookie')
+        const token = getCookiesByName('jwtCookie');
 
         try {
             const response = await fetch('https://backendtiendapipos.onrender.com/api/users', {
@@ -33,7 +43,6 @@ const Admin = () => {
 
             const usuarios = await response.json();
             const data = usuarios.mensaje;
-            console.log(data)
 
             if (Array.isArray(data)) {
                 setUsers(data);
@@ -45,6 +54,40 @@ const Admin = () => {
         }
     };
 
+    const handleModifyProduct = async () => {
+        const token = getCookiesByName('jwtCookie');
+
+        try {
+            const response = await fetch(`https://backendtiendapipos.onrender.com/api/products/${modifiedProduct._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(modifiedProduct)
+            });
+
+            if (response.ok) {
+                console.log(`Producto con ID ${modifiedProduct._id} modificado exitosamente`);
+                // Actualizar la lista de productos después de modificar
+                fetchProduct(currentPage);
+                setModifiedProduct({
+                    _id: null,
+                    title: '',
+                    description: '',
+                    price: 0,
+                    stock: 0,
+                    code: '',
+                    category: '',
+                    thumbnails: ''
+                });
+            } else {
+                console.error('Error al modificar el producto:', response.status);
+            }
+        } catch (error) {
+            console.error('Error al modificar el producto:', error);
+        }
+    };
 
     const handleShowUsers = () => {
         fetchUsers();
@@ -69,7 +112,6 @@ const Admin = () => {
             } else {
                 console.error('La respuesta no tiene la estructura esperada');
             }
-
         } catch (error) {
             console.error('Error al obtener el detalle del producto:', error);
         }
@@ -93,7 +135,7 @@ const Admin = () => {
     };
 
     const handleDeleteProduct = async () => {
-        const token = getCookiesByName('jwtCookie')
+        const token = getCookiesByName('jwtCookie');
 
         if (!selectedProduct._id) {
             console.error('No se ha seleccionado ningún producto para eliminar');
@@ -140,7 +182,6 @@ const Admin = () => {
         <div>
             <h2 style={{ textAlign: 'center' }}>Administrador</h2>
             <div className='adminMenu'>
-
                 <div className='optionAdmin'>
                     <h3>Ingresar Productos</h3>
                     <NavLink className='adminBtn' to="/newProducts">Nuevo Producto</NavLink>
@@ -148,7 +189,7 @@ const Admin = () => {
                 <br />
                 <div className='optionAdmin'>
                     <div>
-                        <h3>Borrar Productos</h3>
+                        <h3>Borrar/modificar Productos</h3>
                         <div>
                             <select onChange={(e) => handleProductChange(e.target.value)}>
                                 <option value="" disabled defaultValue>Seleccione un producto</option>
@@ -160,13 +201,6 @@ const Admin = () => {
                             </select>
                         </div>
                         <br />
-                        {/* <div className="pagination">
-                            {[...Array(totalPages).keys()].map((number) => (
-                                <span key={number + 1} className={currentPage === number + 1 ? 'active' : ''} onClick={() => handlePageChange(number + 1)}>
-                                    {number + 1}
-                                </span>
-                            ))}
-                        </div> */}
                     </div>
                     {selectedProduct._id && (
                         <div className='divBorrar'>
@@ -177,7 +211,71 @@ const Admin = () => {
                             <p>Stock: {selectedProduct.stock}</p>
                             <p>Code: {selectedProduct.code}</p>
                             <p>Category: {selectedProduct.category}</p>
-                            <button className='adminBtn' onClick={handleDeleteProduct}>Eliminar Producto</button>
+                            <div className='borrarEliminar'>
+                                <button className='adminBtn' onClick={handleDeleteProduct}>Eliminar Producto</button>
+                                <button className='adminBtn' onClick={() => setModifiedProduct(selectedProduct)}>
+                                    Modificar Producto
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                    {modifiedProduct._id && (
+                        <div className='divModificar'>
+                            <h3>Modificar Producto</h3>
+                            <form>
+                                <label>Nombre: </label>
+                                <input
+                                    type='text'
+                                    value={modifiedProduct.title}
+                                    onChange={(e) => setModifiedProduct({ ...modifiedProduct, title: e.target.value })}
+                                />
+                                <br />
+                                <label>Descripcion: </label>
+                                <input
+                                    type='text'
+                                    value={modifiedProduct.description}
+                                    onChange={(e) => setModifiedProduct({ ...modifiedProduct, description: e.target.value })}
+                                />
+                                <br />
+                                <label>Precio: </label>
+                                <input
+                                    type='number'
+                                    value={modifiedProduct.price}
+                                    onChange={(e) => setModifiedProduct({ ...modifiedProduct, price: e.target.value })}
+                                />
+                                <br />
+                                <label>Stock: </label>
+                                <input
+                                    type='number'
+                                    value={modifiedProduct.stock}
+                                    onChange={(e) => setModifiedProduct({ ...modifiedProduct, stock: e.target.value })}
+                                />
+                                <br />
+                                <label>Codigo: </label>
+                                <input
+                                    type='text'
+                                    value={modifiedProduct.code}
+                                    onChange={(e) => setModifiedProduct({ ...modifiedProduct, code: e.target.value })}
+                                />
+                                <br />
+                                <label>Categoria: </label>
+                                <input
+                                    type='text'
+                                    value={modifiedProduct.category}
+                                    onChange={(e) => setModifiedProduct({ ...modifiedProduct, category: e.target.value })}
+                                />
+                                <br />
+                                <label>Thumbnails: </label>
+                                <input
+                                    type='text'
+                                    value={modifiedProduct.thumbnails}
+                                    onChange={(e) => setModifiedProduct({ ...modifiedProduct, thumbnails: e.target.value })}
+                                />
+                                <br />
+                                <button className='adminBtn' type='button' onClick={handleModifyProduct}>
+                                    Guardar Modificaciones
+                                </button>
+                            </form>
                         </div>
                     )}
                 </div>
