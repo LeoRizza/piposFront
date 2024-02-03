@@ -23,8 +23,8 @@ const Checkout = () => {
             const userName = userData.user.first_name;
             const userApellido = userData.user.last_name;
             setCartId(userCartId);
-            setNombre(userName)
-            setApellido(userApellido)
+            setNombre(userName);
+            setApellido(userApellido);
         } catch (error) {
             console.error('Error al obtener el ID de cart:', error);
         }

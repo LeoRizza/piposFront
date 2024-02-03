@@ -38,22 +38,22 @@ export const Login = () => {
             <Form onSubmit={handleSumbit} ref={formRef}>
                 <Form.Group className="mb-3">
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" name="email" placeholder="Ingresa email" />
+                    <Form.Control type="email" name="email" placeholder="Ingresa email" autoComplete="username"/>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" name="password" placeholder="Ingresa password" />
+                    <Form.Control type="password" name="password" placeholder="Ingresa password" autoComplete="current-password"/>
                 </Form.Group>
 
-                <Button variant="success" type="submit">
+                <button className="registerBtn" variant="none" type="submit">
                     Iniciar Sesion
-                </Button>
+                </button>
 
             </Form>
-            <NavLink className="registerBtn" to="/register"><Button variant="success" type="submit">
+            <NavLink to="/register"><button className="registerBtn" variant="none" type="submit">
                     Register
-                </Button></NavLink>
+                </button></NavLink>
         </div>
     )
 }

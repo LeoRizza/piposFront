@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { getCookiesByName } from '../Utils/FormsUtils.js';
 import './NavBar.css';
 
 const NavBar = () => {
     const [menuVisible, setMenuVisible] = useState(false);
+    const [userRol, setRol] = useState(null);
+    const [nombre, setNombre] = useState(null);
+    const [apellido, setApellido] = useState(null);
 
     const cerrarMenu = () => {
         setMenuVisible(false);
@@ -13,6 +16,35 @@ const NavBar = () => {
     const abrirMenu = () => {
         setMenuVisible(true);
     };
+
+    const userInfo = async () => {
+        const token = getCookiesByName('jwtCookie')
+
+        if (token) {
+            try {
+                const response = await fetch('https://backendtiendapipos.onrender.com/api/sessions/current', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-type': 'application/json'
+                    },
+                });
+                const userData = await response.json();
+                const userRol = userData.user.rol;
+                const userName = userData.user.first_name;
+                const userApellido = userData.user.last_name;
+                setRol(userRol);
+                setNombre(userName);
+                setApellido(userApellido);
+            } catch (error) {
+                console.error('Error', error);
+            }
+        }
+    };
+
+    useEffect(() => {
+        userInfo();
+    }, []);
 
     const logoutRoute = async () => {
         const token = getCookiesByName('jwtCookie')
@@ -32,7 +64,6 @@ const NavBar = () => {
         } else {
             console.error('Error al cerrar session:', logoutResponse.status);
         }
-
     };
 
     return (
@@ -45,8 +76,8 @@ const NavBar = () => {
             <nav className={`nav ${menuVisible ? 'visible' : ''}`}>
                 <button className='cerrarMenu' onClick={cerrarMenu}><img className='icono' src="../img/close.png" alt="close" /></button>
                 <ul className='navl'>
-                    <NavLink className="session" to="/login"><img className='icono' src="../img/account.svg" alt="session" />iniciar session</NavLink>
-                    <NavLink className="logout" to="/" onClick={logoutRoute}><img className='icono' src="../img/logout.svg" alt="session" />cerrar session</NavLink>
+                    <NavLink className={`session ${!getCookiesByName('jwtCookie') ? '' : 'visibilityNone'}`} to="/login"><img className='icono' src="../img/account.svg" alt="session" />iniciar session</NavLink>
+                    <NavLink className={`logout ${getCookiesByName('jwtCookie') ? '' : 'visibilityNone'}`} to="/" onClick={logoutRoute}><img className='icono' src="../img/logout.svg" alt="session" />cerrar session</NavLink>
                     <li>
                         <NavLink className="estiloCat" to="/products/camisetas">Camisetas</NavLink>
                     </li>
@@ -57,9 +88,16 @@ const NavBar = () => {
                         <NavLink className="estiloCat" to="/products/camperas">Camperas</NavLink>
                     </li>
                 </ul>
+                {userRol === 'admin' && (
+                    <NavLink className={`admin ${!getCookiesByName('jwtCookie') ? 'visibilityNone' : ''}`} to="/admin">
+                        Admin<img className='icono' src="../img/admins.svg" alt="admin logo" />
+                    </NavLink>
+                )}
             </nav>
-
-            <button className='abrirMenu' onClick={abrirMenu}><img className='icono' src="../img/burger.png" alt="cuenta" /></button>
+            <div className='divCartBurger'>
+                <NavLink className={`cartIcon ${!getCookiesByName('jwtCookie') ? 'visibilityNone' : ''}`} to="/cart"><img className='icono' src="../img/carrito.svg" alt="cart" /></NavLink>
+                <button className='abrirMenu' onClick={abrirMenu}><img className='icono' src="../img/burger.png" alt="cuenta" /></button>
+            </div>
         </header>
     );
 };

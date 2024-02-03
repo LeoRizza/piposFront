@@ -6,6 +6,7 @@ import Login from "./components/Login/Login"
 import NewProducts from './components/Products/NewProducts'
 import NavBar from "./components/NavBar/NavBar"
 import Cart from './components/Cart/Cart'
+import Admin from './components/Admin/Admin'
 import Checkout from './components/Checkout/Checkout'
 import './App.css'
 
@@ -25,6 +26,7 @@ const App = () => {
             <Route path="/cart" element={<Cart/>} />
             <Route path="/checkout" element={<Checkout/>} />
             <Route path="/newproducts" element={<NewProducts />} />
+            <Route path="/admin" element={<Admin />} />
             <Route path="*" element={<h2>Sitio en Construccion</h2>} />
           </Routes>
       </BrowserRouter>

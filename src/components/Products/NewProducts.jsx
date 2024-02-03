@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { getCookiesByName } from "../Utils/FormsUtils.js";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import './NewProducts.css';
 
 export default function NewProducts() {
     const formRef = useRef(null)
@@ -35,45 +36,46 @@ export default function NewProducts() {
     return (
         <div className="NewProductsContainer">
             <h3>Ingresar Nuevo Producto</h3>
+            <br />
             <Form onSubmit={handleNewProducts} ref={formRef}>
                 <Form.Group className="mb-3">
-                    <Form.Label>Titulo</Form.Label>
+                    <Form.Label className="productoLabel">Titulo</Form.Label>
                     <Form.Control type="text" name="title" placeholder="Nombre del producto" />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Descripcion</Form.Label>
+                    <Form.Label className="productoLabel">Descripcion</Form.Label>
                     <Form.Control type="text" name="description" placeholder="Descripcion del producto" />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Precio</Form.Label>
+                    <Form.Label className="productoLabel">Precio</Form.Label>
                     <Form.Control type="number" name="price" placeholder="Ingresa precio del producto" />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Stock</Form.Label>
+                    <Form.Label className="productoLabel">Stock</Form.Label>
                     <Form.Control type="number" name="stock" placeholder="Ingresa Stock" />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Categoria</Form.Label>
+                    <Form.Label className="productoLabel">Categoria</Form.Label>
                     <Form.Control type="text" name="category" placeholder="Ingresa categoria del producto" />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Codigo</Form.Label>
+                    <Form.Label className="productoLabel">Codigo</Form.Label>
                     <Form.Control type="text" name="code" placeholder="Ingresa codigo del producto" />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Thumbnails</Form.Label>
+                    <Form.Label className="productoLabel">Thumbnails</Form.Label>
                     <Form.Control type="text" name="thumbnails" placeholder="Ingresa Url de la imagen del producto" />
                 </Form.Group>
 
-                <Button variant="success" type="submit">
+                <button className="adminBtn" variant="success" type="submit">
                     Crear producto
-                </Button>
+                </button>
             </Form>
         </div>
     )

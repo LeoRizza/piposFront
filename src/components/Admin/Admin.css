@@ -1,24 +1,13 @@
-.loginContainer {
-    width: 18rem;
-    padding: 2rem 2rem;
-    border: solid 4px rgb(236, 69, 37);
-    border-radius: 15px;
-    background-color: white;
+
+.adminMenu {
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    text-align: center;
+    align-items: center;
+    justify-content: flex-start;
     margin: 20vh auto;
-
 }
 
-#root {
-    background-color: rgb(240, 241, 222);
-    min-height: 100vh;    
-}
-
-
-.registerBtn {
+.adminBtn {
     border-radius: 16px;
     background-color: #791c0a;
     border: solid transparent;
@@ -37,7 +26,7 @@
     transform: translateZ(0);
 }
 
-.registerBtn::after {
+.adminBtn::after {
     background-clip: padding-box;
     background-color: #ec4525;
     border: solid transparent;
@@ -52,19 +41,19 @@
     z-index: -1;
 }
 
-.registerBtn:focus {
+.adminBtn:focus {
     user-select: auto;
 }
-.registerBtn:hover:not(:disabled) {
+.adminBtn:hover:not(:disabled) {
     filter: brightness(1.1);
 }
-.registerBtn:disabled {
+.adminBtn:disabled {
     cursor: auto;
 }
 
-.registerBtn:active::after {
+.adminBtn:active::after {
     border-width: 0 0 0px;
 }
-.registerBtn:active {
+.adminBtn:active {
     padding-bottom: 10px;
 }

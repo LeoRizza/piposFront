@@ -40,7 +40,7 @@ const Register = () => {
 
                 <Form.Group className="mb-3">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" name="password" placeholder="Ingresa Password" />
+                    <Form.Control type="password" name="password" placeholder="Ingresa Password"/>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
