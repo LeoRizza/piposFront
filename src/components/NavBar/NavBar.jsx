@@ -83,12 +83,13 @@ const NavBar = () => {
                     </li>
                 </ul>
             </nav>
-            {userRol === 'admin' && (
+
+            <div className='divCartBurger'>
+                {userRol === 'admin' && (
                     <NavLink className={`admin ${!getCookiesByName('jwtCookie') ? 'visibilityNone' : ''}`} to="/admin">
                         Admin<img className='icono' src="../img/admins.svg" alt="admin logo" />
                     </NavLink>
                 )}
-            <div className='divCartBurger'>
                 <NavLink className={`cartIcon ${!getCookiesByName('jwtCookie') ? 'visibilityNone' : ''}`} to="/cart"><img className='icono' src="../img/carrito.svg" alt="cart" /></NavLink>
                 <button className='abrirMenu' onClick={abrirMenu}><img className='icono' src="../img/burger.png" alt="cuenta" /></button>
             </div>
