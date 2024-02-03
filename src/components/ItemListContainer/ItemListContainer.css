@@ -16,6 +16,69 @@
     background: rgb(240, 241, 222);
 }
 
+.paginationButtons {
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: rgb(240, 241, 222);
+}
+
+.pageNumber{
+    font-weight: 900;
+}
+.pageButton {
+    border-radius: 16px;
+    background-color: #791c0a;
+    border: solid transparent;
+    border-width: 0 0 4px;
+    color: #FFFFFF;
+    margin: 0 20px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    overflow: visible;
+    padding: 13px 19px;
+    text-align: center;
+    text-transform: uppercase;
+    transform: translateZ(0);
+}
+
+.pageButton::after {
+    background-clip: padding-box;
+    background-color: #ec4525;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.pageButton:focus {
+    user-select: auto;
+}
+.pageButton:hover:not(:disabled) {
+    filter: brightness(1.1);
+}
+.pageButton:disabled {
+    cursor: auto;
+}
+
+.pageButton:active::after {
+    border-width: 0 0 0px;
+}
+.pageButton:active {
+    padding-bottom: 10px;
+}
+
 @media (max-width: 600px) {
     .tituloGreeting {
         font-size: 2em;

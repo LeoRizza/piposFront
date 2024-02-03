@@ -7,6 +7,9 @@ import './ItemListContainer.css';
 const ItemListContainer = () => {
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+
     const location = useLocation();
     const { category } = useParams();
 
@@ -14,24 +17,26 @@ const ItemListContainer = () => {
         const fetchProducts = async () => {
             try {
                 let apiUrl = 'https://backendtiendapipos.onrender.com/api/products';
-        
+
                 const queryParams = {
                     category: category || '',
+                    limit: 12,
+                    page: currentPage,
                     ...queryString.parse(location.search),
                 };
-        
+
                 const response = await fetch(`${apiUrl}?${queryString.stringify(queryParams)}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                    },
-                    mode: 'cors',
+                    }
                 });
-        
+
                 const data = await response.json();
-        
+
                 if (data && data.products) {
                     setProductos(data.products);
+                    setTotalPages(Math.ceil(data.totalProducts / 12));
                 } else if (Array.isArray(data)) {
                     setProductos(data);
                 } else {
@@ -43,18 +48,45 @@ const ItemListContainer = () => {
                 setLoading(false);
             }
         };
-        
 
         fetchProducts();
-    }, [category, location.search]);
+    }, [category, location.search, currentPage]);
+
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+    };
+
+    const renderPaginationButtons = () => {
+        const buttons = [];
+        for (let i = 1; i <= totalPages; i++) {
+            buttons.push(
+                <button key={i} onClick={() => handlePageChange(i)}>
+                    {i}
+                </button>
+            );
+        }
+        return buttons;
+    };
 
     return (
         <div>
             <div className="divTitle">
-                <img className="logoSabroso" src="../img/logo.png" alt="logo sabroson" />
+                <img className="logoSabroso" src="../img/logo2.png" alt="logo sabroson" />
             </div>
             {productos && productos.length > 0 ? (
-                <ItemList productos={productos} loading={loading} />
+                <div>
+                    <ItemList productos={productos} loading={loading} />
+                    <div className="paginationButtons">
+                        <button className="pageButton" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+                            Anterior
+                        </button>
+                        <h4 className="pageNumber">{currentPage}</h4>
+                        {renderPaginationButtons()}
+                        <button className="pageButton" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+                            Siguiente
+                        </button>
+                    </div>
+                </div>
             ) : (
                 <p>No se encontraron productos.</p>
             )}
