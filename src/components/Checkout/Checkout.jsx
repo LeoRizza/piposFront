@@ -39,8 +39,8 @@ const Checkout = () => {
                             'Content-type': 'application/json'
                         },
                     });
-                    console.log(response)
                     const responseData = await response.json();
+                    console.log(responseData)
                     setCheckoutResponse(responseData);
                 } catch (error) {
                     console.error('Error al obtener la respuesta del checkout:', error);
@@ -56,7 +56,7 @@ const Checkout = () => {
             <h1>Informacion de compra</h1>
             <div>
                 <p>{checkoutResponse.respuesta}</p>
-                <p>{checkoutResponse.mensaje}</p>
+                <p>{checkoutResponse.payload}</p>
             </div>
         </div>
     );
