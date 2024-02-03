@@ -1,6 +1,19 @@
 .checkoutContainer {
     background-color: rgb(240, 241, 222);
     min-height: 100vh;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     padding-top: 5vh;
+}
+
+.ticket {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: start;
+}
+
+.ticket h5 {
+    padding: 1rem 0;
 }

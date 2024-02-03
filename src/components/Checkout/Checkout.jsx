@@ -5,6 +5,8 @@ import './Checkout.css';
 const Checkout = () => {
     const [checkoutResponse, setCheckoutResponse] = useState({});
     const [cartId, setCartId] = useState(null);
+    const [nombre, setNombre] = useState(null);
+    const [apellido, setApellido] = useState(null);
     const token = getCookiesByName('jwtCookie');
 
     const fetchCartId = async () => {
@@ -18,7 +20,11 @@ const Checkout = () => {
             });
             const userData = await response.json();
             const userCartId = userData.user.cart;
+            const userName = userData.user.first_name;
+            const userApellido = userData.user.last_name;
             setCartId(userCartId);
+            setNombre(userName)
+            setApellido(userApellido)
         } catch (error) {
             console.error('Error al obtener el ID de cart:', error);
         }
@@ -56,7 +62,15 @@ const Checkout = () => {
             <h1>Informacion de compra</h1>
             <div>
                 <p>{checkoutResponse.respuesta}</p>
-                <p>{checkoutResponse.payload}</p>
+                {checkoutResponse.payload && checkoutResponse.payload.ticket && (
+                    <div className="ticket">
+                        Muchas gracias por confiar en nosotros {nombre} {apellido}
+                        <h5><b>Monto Total</b>: ${checkoutResponse.payload.ticket.amount}</h5>
+                        <h5><b>Codigo</b>: {checkoutResponse.payload.ticket.code}</h5>
+                        <h5><b>Fecha de compra</b>: {checkoutResponse.payload.ticket.purchase_datetime}</h5>
+                        <h6>Se ha enviado un mail con esta informacion a {checkoutResponse.payload.ticket.purchaser}</h6>
+                    </div>
+                )}
             </div>
         </div>
     );
